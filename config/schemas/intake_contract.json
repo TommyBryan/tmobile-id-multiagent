@@ -1,0 +1,23 @@
+{
+    "request_id": "",
+    "request_type": "",
+    "business_problem_as_stated": "",
+    "target_population": "",
+    "requested_date": "",
+    "urgency_score": 0,
+    "business_impact_score": 0,
+    "duplicate_case_flag": false,
+    "duplicate_candidates": [
+    {
+    "case_id": "",
+    "reason": "",
+    "confidence": 0
+    }
+    ],
+    "routing_decision": "",
+    "missing_information": [],
+    "discovery_ready": false,
+    "evidence": [],
+    "confidence": 0,
+    "routing_rationale": ""
+}
