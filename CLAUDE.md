@@ -10,10 +10,10 @@ before writing or changing code.
 ```
 tmobile-id-multiagent/
 ├── app/
-│   └── main.py                      # EMPTY — not yet written
+│   └── main.py                      # Skills Data Service scaffold, verbatim from v6 §8
 ├── tests/                           # EMPTY — no tests yet
 ├── docs/
-│   └── source/                      # PUT THE TWO SOURCE PDFs HERE (not yet added — see below)
+│   └── source/                      # The two source PDFs (v6 + v3), plus doc.txt placeholder
 ├── requirements.txt                 # fastapi, uvicorn[standard], pydantic, jsonschema,
 │                                     # openapi-spec-validator — installed and confirmed working
 ├── dependencies.md                  # Explains each dependency and how they interact at runtime
@@ -28,11 +28,11 @@ not yet the full multi-agent mesh; `agents/`, `schemas/`, and the other services
 
 ---
 
-## Source of truth — action needed
+## Source of truth
 
-Two PDFs define this project's requirements and are **not yet in the repo**. Add them to
-`docs/source/` before relying on Claude Code to reference exact schemas or code scaffolds — do not
-let it paraphrase from memory of this file for anything about to be implemented.
+Two PDFs in `docs/source/` define this project's requirements. Read the relevant section of the
+PDF itself before implementing anything from it — do not paraphrase from memory of this file for
+exact schemas or code scaffolds.
 
 1. **`T-Mobile_ID_Multi_Agent_Architecture_v6_Skills_Data_Service_API.pdf`**
    The primary architecture doc. Contains:
@@ -60,8 +60,11 @@ let it paraphrase from memory of this file for anything about to be implemented.
 
 - [x] Python environment created, dependencies installed and confirmed (`pip list` verified):
       `fastapi`, `uvicorn[standard]`, `pydantic`, `jsonschema`, `openapi-spec-validator`
-- [ ] Two source PDFs not yet copied into `docs/source/`
-- [ ] `app/main.py` is empty — next concrete step is the FastAPI scaffold from v6 §8
+- [x] Both source PDFs committed to `docs/source/`
+- [x] `app/main.py` written as a verbatim copy of the v6 §8 scaffold; boots, serves `/docs` (200),
+      and `POST /v1/skills/evidence` returns 501 "TechWolf tenant adapter not configured".
+      Note: per §8, `authorize_request()` returns `True` (pass-through stub — NOT real auth);
+      only `techwolf_query()` and `normalize_and_validate()` raise `NotImplementedError`
 - [ ] `tests/` is empty
 - [ ] No schemas, no other agents, no Docker yet
 
@@ -83,13 +86,15 @@ and this project is being built incrementally, one confirmed layer at a time.
 
 ---
 
-## Immediate next step
+## Known issues / open decisions
 
-Write `app/main.py` using the FastAPI scaffold in the v6 doc, §8 — the Pydantic models
-(`Population`, `DiagnosticContext`, `Options`, `SkillEvidenceRequest`), the `POST /v1/skills/evidence`
-route, and the stub functions (`authorize_request()`, `techwolf_query()`, `normalize_and_validate()`)
-left as `NotImplementedError` since there are no real TechWolf credentials yet. Then run
-`uvicorn app.main:app --reload` and confirm it boots and serves `/docs`.
+- The `.venv` was renamed from `venv` after creation, so its scripts' shebangs point to the old
+  path and bare `uvicorn` fails. Run via the interpreter instead, or recreate the venv:
+  `.venv/bin/python -m uvicorn app.main:app --reload`
+- Writing tests needs a new dependency: FastAPI's `TestClient` requires `httpx2`, and no test
+  framework is chosen yet. Ask before adding either.
+- `authorize_request()` must be replaced with real Entra ID app-only token / scope / case
+  authorization before the service handles anything real.
 
 ---
 
