@@ -20,14 +20,17 @@ tmobile-id-multiagent/
 ├── requirements.txt                 # fastapi, uvicorn[standard], pydantic, jsonschema,
 │                                     # openapi-spec-validator — installed and confirmed working
 ├── dependencies.md                  # Explains each dependency and how they interact at runtime
-├── project-structure.md             # Quick repo map with inline comments
-├── project-structure-detailed.md    # Same structure, fuller explanations + build order + tool list
+├── project-structure.md             # Skills Data Service target layout (v6 §9), inline comments
+├── project-structure-detailed.md    # Same structure, with an explanation of each file + request flow
+├── project-structure-v2.md          # Copy of project-structure.md + full multi-agent repo tree
+│                                     # (schemas/, agents/, orchestrator/, tests/ with ✅/🆕/⬜ status)
+├── project-structure-detailed-v2.md # Copy of project-structure-detailed.md + the same full tree
 └── CLAUDE.md                        # this file
 ```
 
-This repo *is* the Skills Data Service build (step 2 of the overall build order — see
-`project-structure-detailed.md` for the full 11-step sequence across the whole agent mesh). It is
-not yet the full multi-agent mesh; `agents/`, `orchestrator/`, and the other services come later.
+This repo currently holds the Skills Data Service build plus the canonical schemas. It is not yet
+the full multi-agent mesh; `agents/`, `orchestrator/`, and the other services come later — see
+`project-structure-v2.md` for the planned full-repo tree and what exists vs. what's planned.
 
 ---
 
@@ -148,4 +151,4 @@ Run tests with: `.venv/bin/python -m unittest discover tests -v`
   individual-level data unless separately authorized.
 - Production-write services (Scheduler/Batch, Notification/Delivery) must never report fabricated
   success — see `ProductionWriteUnavailableError` and `allow_simulated` labeling requirements in the
-  v6 doc. (Not relevant to this repo yet — those are built in step 9 of the overall sequence.)
+  v6 doc. (Not relevant to this repo yet — those services come later.)
