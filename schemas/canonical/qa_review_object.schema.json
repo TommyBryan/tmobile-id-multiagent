@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Agent Output Contract",
+  "type": "object",
+  "properties": {
+    "artifact_id": {
+      "type": "string",
+      "description": "Artifact/Brief/Content package ID"
+    },
+    "review_mode": {
+      "type": "string",
+      "description": "Brief Review | Content Quality",
+      "enum": [
+        "Brief Review",
+        "Content Quality"
+      ]
+    },
+    "rubric_version": {
+      "type": "string",
+      "description": "Rubric version"
+    },
+    "qa_score": {
+      "type": "integer"
+    },
+    "issues": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "severity": {
+            "type": "string",
+            "description": "Blocker | Major | Minor",
+            "enum": [
+              "Blocker",
+              "Major",
+              "Minor"
+            ]
+          },
+          "category": {
+            "type": "string",
+            "description": "Quality/accessibility/design/content/traceability category"
+          },
+          "location": {
+            "type": "string",
+            "description": "Section/location"
+          },
+          "finding": {
+            "type": "string",
+            "description": "Finding"
+          },
+          "required_fix": {
+            "type": "string",
+            "description": "Required fix"
+          }
+        },
+        "required": [
+          "severity",
+          "category",
+          "location",
+          "finding",
+          "required_fix"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "accessibility_findings": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "WCAG/accessibility finding, or None"
+      }
+    },
+    "traceability_findings": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "Behavior/source traceability finding, or None"
+      }
+    },
+    "release_recommendation": {
+      "type": "string",
+      "description": "PASS | PASS_WITH_FIXES | BLOCK",
+      "enum": [
+        "PASS",
+        "PASS_WITH_FIXES",
+        "BLOCK"
+      ]
+    },
+    "human_signoff_required": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "artifact_id",
+    "review_mode",
+    "rubric_version",
+    "qa_score",
+    "issues",
+    "accessibility_findings",
+    "traceability_findings",
+    "release_recommendation",
+    "human_signoff_required"
+  ],
+  "additionalProperties": false
+}

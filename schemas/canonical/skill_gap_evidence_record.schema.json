@@ -1,0 +1,183 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SkillGapEvidenceRecord",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "case_id",
+    "status",
+    "source",
+    "population",
+    "skill_evidence",
+    "quality",
+    "limitations",
+    "diagnostic_evidence_ready",
+    "audit_reference"
+  ],
+  "properties": {
+    "case_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "success",
+        "insufficient_evidence",
+        "partial",
+        "error"
+      ]
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "system",
+        "retrieved_at",
+        "source_freshness"
+      ],
+      "properties": {
+        "system": {
+          "const": "TechWolf"
+        },
+        "retrieved_at": {
+          "type": "string"
+        },
+        "source_freshness": {
+          "type": "string"
+        }
+      }
+    },
+    "population": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "population_id",
+        "role",
+        "population_size",
+        "records_with_skill_data",
+        "coverage"
+      ],
+      "properties": {
+        "population_id": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        },
+        "population_size": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "records_with_skill_data": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "coverage": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "skill_evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "skill_id",
+          "skill",
+          "signal_type",
+          "evidence_reference"
+        ],
+        "properties": {
+          "skill_id": {
+            "type": "string"
+          },
+          "skill": {
+            "type": "string"
+          },
+          "observed_level": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "expected_level": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "gap": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "prevalence": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 1
+          },
+          "signal_type": {
+            "type": "string"
+          },
+          "confidence": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 1
+          },
+          "evidence_reference": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "quality": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "coverage_threshold_met",
+        "freshness_threshold_met",
+        "overall_confidence"
+      ],
+      "properties": {
+        "coverage_threshold_met": {
+          "type": "boolean"
+        },
+        "freshness_threshold_met": {
+          "type": "boolean"
+        },
+        "overall_confidence": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "diagnostic_evidence_ready": {
+      "type": "boolean"
+    },
+    "audit_reference": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

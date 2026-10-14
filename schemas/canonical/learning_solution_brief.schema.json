@@ -1,0 +1,222 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Agent Output Contract",
+  "type": "object",
+  "properties": {
+    "business_need": {
+      "type": "string",
+      "description": "Approved business need/outcome"
+    },
+    "target_population": {
+      "type": "string",
+      "description": "Audience from approved Diagnosis/Learner Context"
+    },
+    "diagnosis_summary": {
+      "type": "string",
+      "description": "Approved diagnosis; do not redefine"
+    },
+    "evidence_base": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "Diagnosis Object / Skills / Learner Data evidence reference"
+      }
+    },
+    "aactt_target_behaviors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "audience": {
+            "type": "string",
+            "description": "Actor/Audience"
+          },
+          "action": {
+            "type": "string",
+            "description": "Observable Action"
+          },
+          "condition": {
+            "type": "string",
+            "description": "Condition/Context"
+          },
+          "target": {
+            "type": "string",
+            "description": "Target"
+          },
+          "timeframe": {
+            "type": "string",
+            "description": "Time/Timeframe"
+          },
+          "gap_evidence": {
+            "type": "string",
+            "description": "Root cause/skill-gap evidence reference"
+          }
+        },
+        "required": [
+          "audience",
+          "action",
+          "condition",
+          "target",
+          "timeframe",
+          "gap_evidence"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "learning_non_learning_solution_components": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "Supported learning/non-learning component"
+      }
+    },
+    "modality_recommendation": {
+      "type": "string",
+      "description": "Recommended modality"
+    },
+    "modality_rationale": {
+      "type": "string",
+      "description": "Trade-offs: urgency, distribution, seat time, shelf-life, complexity, risk, practice need"
+    },
+    "practice_strategy": {
+      "type": "integer"
+    },
+    "assessment_strategy": {
+      "type": "integer"
+    },
+    "performance_support": {
+      "type": "string",
+      "description": "Performance-support component, or None"
+    },
+    "manager_environment_reinforcement": {
+      "type": "string",
+      "description": "Manager/environment reinforcement, or None"
+    },
+    "success_criteria": {
+      "type": "object",
+      "properties": {
+        "L1": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "Measurable reaction criterion"
+          }
+        },
+        "L2": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "Measurable learning criterion"
+          }
+        },
+        "L3": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "Observable behavior criterion"
+          }
+        },
+        "L4": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "Business-result criterion or Baseline to be established"
+          }
+        }
+      },
+      "required": [
+        "L1",
+        "L2",
+        "L3",
+        "L4"
+      ],
+      "additionalProperties": false
+    },
+    "baseline_data_required": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "Baseline needed for L3/L4, or None"
+      }
+    },
+    "constraints": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "Constraint, or None"
+      }
+    },
+    "dependencies": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "Dependency, or None"
+      }
+    },
+    "risks": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "Risk, or None"
+      }
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "Assumption, or None"
+      }
+    },
+    "open_decisions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "Decision requiring resolution, or None"
+      }
+    },
+    "traceability_matrix": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "diagnosis_evidence": {
+            "type": "string",
+            "description": "Evidence reference"
+          },
+          "design_decision": {
+            "type": "string",
+            "description": "Resulting design decision"
+          }
+        },
+        "required": [
+          "diagnosis_evidence",
+          "design_decision"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "business_need",
+    "target_population",
+    "diagnosis_summary",
+    "evidence_base",
+    "aactt_target_behaviors",
+    "learning_non_learning_solution_components",
+    "modality_recommendation",
+    "modality_rationale",
+    "practice_strategy",
+    "assessment_strategy",
+    "performance_support",
+    "manager_environment_reinforcement",
+    "success_criteria",
+    "baseline_data_required",
+    "constraints",
+    "dependencies",
+    "risks",
+    "assumptions",
+    "open_decisions",
+    "traceability_matrix"
+  ],
+  "additionalProperties": false
+}

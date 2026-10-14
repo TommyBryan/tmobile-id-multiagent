@@ -1,0 +1,242 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Agent Output Contract",
+  "type": "object",
+  "properties": {
+    "program_id": {
+      "type": "string",
+      "description": "Program/solution ID"
+    },
+    "measurement_window": {
+      "type": "string",
+      "description": "30/60/90-day or configured window"
+    },
+    "population": {
+      "type": "string",
+      "description": "Measured population"
+    },
+    "L1": {
+      "type": "object",
+      "properties": {
+        "findings": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "Reaction finding"
+          }
+        },
+        "sample_size": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "findings",
+        "sample_size"
+      ],
+      "additionalProperties": false
+    },
+    "L2": {
+      "type": "object",
+      "properties": {
+        "findings": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "Learning finding"
+          }
+        },
+        "sample_size": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "findings",
+        "sample_size"
+      ],
+      "additionalProperties": false
+    },
+    "completion": {
+      "type": "object",
+      "properties": {
+        "rate": {
+          "type": "integer"
+        },
+        "patterns": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "Pattern"
+          }
+        }
+      },
+      "required": [
+        "rate",
+        "patterns"
+      ],
+      "additionalProperties": false
+    },
+    "L3": {
+      "type": "object",
+      "properties": {
+        "findings": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "Behavior/transfer finding"
+          }
+        },
+        "sample_size": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "findings",
+        "sample_size"
+      ],
+      "additionalProperties": false
+    },
+    "L4": {
+      "type": "object",
+      "properties": {
+        "findings": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "Business-result finding"
+          }
+        },
+        "sample_size": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "findings",
+        "sample_size"
+      ],
+      "additionalProperties": false
+    },
+    "baseline_comparison": {
+      "type": "object",
+      "properties": {
+        "baseline": {
+          "type": "string",
+          "description": "Baseline"
+        },
+        "post": {
+          "type": "string",
+          "description": "Post value"
+        },
+        "difference": {
+          "type": "string",
+          "description": "Difference"
+        }
+      },
+      "required": [
+        "baseline",
+        "post",
+        "difference"
+      ],
+      "additionalProperties": false
+    },
+    "segment_findings": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "Authorized aggregate segment finding"
+      }
+    },
+    "attribution_notes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "Attribution/confounder note"
+      }
+    },
+    "data_quality": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "description": "Sufficient | Limited | Insufficient",
+          "enum": [
+            "Sufficient",
+            "Limited",
+            "Insufficient"
+          ]
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "Limitation"
+          }
+        }
+      },
+      "required": [
+        "status",
+        "limitations"
+      ],
+      "additionalProperties": false
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "Evidence-grounded finding"
+      }
+    },
+    "discovery_feedback": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "Closed-loop insight for Discovery, or None"
+      }
+    },
+    "iteration_signals": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "Specific content iteration signal, or None"
+      }
+    },
+    "recommended_next_action": {
+      "type": "string",
+      "description": "Monitor | Iterate | Reopen Discovery | Other",
+      "enum": [
+        "Monitor",
+        "Iterate",
+        "Reopen Discovery",
+        "Other"
+      ]
+    }
+  },
+  "required": [
+    "program_id",
+    "measurement_window",
+    "population",
+    "L1",
+    "L2",
+    "completion",
+    "L3",
+    "L4",
+    "baseline_comparison",
+    "segment_findings",
+    "attribution_notes",
+    "data_quality",
+    "confidence",
+    "findings",
+    "discovery_feedback",
+    "iteration_signals",
+    "recommended_next_action"
+  ],
+  "additionalProperties": false
+}

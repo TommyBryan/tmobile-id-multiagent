@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Agent Output Contract",
+  "type": "object",
+  "properties": {
+    "population_id": {
+      "type": "string",
+      "description": "Population ID"
+    },
+    "population_size": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "roles": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "Authorized role(s)"
+      }
+    },
+    "organizations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "Business unit/org(s)"
+      }
+    },
+    "levels": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "Authorized level(s)"
+      }
+    },
+    "work_context": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "Relevant work context"
+      }
+    },
+    "manager_structure": {
+      "type": "string",
+      "description": "Reporting structure summary"
+    },
+    "prior_learning": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "Prior OnPoint intervention + outcome if known"
+      }
+    },
+    "completion_patterns": {
+      "type": "object",
+      "properties": {
+        "[program/cohort]": {
+          "type": "string",
+          "description": "Relevant completion pattern"
+        }
+      },
+      "required": [
+        "[program/cohort]"
+      ],
+      "additionalProperties": false
+    },
+    "certifications": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "Relevant certification"
+      }
+    },
+    "cohort_history": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "Relevant cohort history"
+      }
+    },
+    "source_freshness": {
+      "type": "object",
+      "properties": {
+        "workday": {
+          "type": "string",
+          "description": "Pull date"
+        },
+        "onpoint": {
+          "type": "string",
+          "description": "Pull date"
+        }
+      },
+      "required": [
+        "workday",
+        "onpoint"
+      ],
+      "additionalProperties": false
+    },
+    "data_conflicts": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "Workday/OnPoint conflict, or None"
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "Data availability/sample-size/quality limitation, or None"
+      }
+    }
+  },
+  "required": [
+    "population_id",
+    "population_size",
+    "roles",
+    "organizations",
+    "levels",
+    "work_context",
+    "manager_structure",
+    "prior_learning",
+    "completion_patterns",
+    "certifications",
+    "cohort_history",
+    "source_freshness",
+    "data_conflicts",
+    "limitations"
+  ],
+  "additionalProperties": false
+}
